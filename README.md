@@ -13,16 +13,11 @@
 首先要依赖此项目的library文件,(后期会传到jcenter)
 ### 简单使用
 1.在布局文件中引入:
-
-
- <z.dotloopviewpagerlibrary.DotLoopViewpager
-        android:id="@+id/dlvp"
-        android:layout_width="300dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center"></z.dotloopviewpagerlibrary.DotLoopViewpager>
-
-
-
+<z.dotloopviewpagerlibrary.DotLoopViewpager
+android:id="@+id/dlvp"
+android:layout_width="300dp"
+android:layout_height="200dp"
+android:layout_gravity="center"></z.dotloopviewpagerlibrary.DotLoopViewpager>
 2.在activity中的代码:
 
      private DotLoopViewpager<ADBean> mDlvpDotLoopViewpager;
