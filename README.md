@@ -14,13 +14,13 @@
 ### 简单使用
 1.在布局文件中引入:
 
-    <z.dotloopviewpagerlibrary.DotLoopViewpager
+   FF<z.dotloopviewpagerlibrary.DotLoopViewpager
     android:id="@+id/dlvp"
     android:layout_width="300dp"
     android:layout_height="200dp"
-    android:layout_gravity="center"></z.dotloopviewpagerlibrary.DotLoopViewpager>
+    android:layout_gravity="center"></z.dotloopviewpagerlibrary.DotLoopViewpager>ff
 
-2.在activity中的代码:
+2.在activity中的代码(一定要看注意部分):
 
      private DotLoopViewpager<ADBean> mDlvpDotLoopViewpager;
      @Override
