@@ -18,6 +18,7 @@ android:id="@+id/dlvp"
 android:layout_width="300dp"
 android:layout_height="200dp"
 android:layout_gravity="center"></z.dotloopviewpagerlibrary.DotLoopViewpager>
+
 2.在activity中的代码:
 
      private DotLoopViewpager<ADBean> mDlvpDotLoopViewpager;
