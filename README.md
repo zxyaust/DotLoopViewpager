@@ -1,4 +1,4 @@
-﻿# DotLoopViewpager
+# DotLoopViewpager
 小圆点指示器的viewpager,使用非常方便,自动轮播图片,dot circle indicator viewpager auto looping
 ![示意图][1]
 ## 一.特点
