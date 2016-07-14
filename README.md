@@ -1,4 +1,4 @@
-# DotLoopViewpager
+﻿# DotLoopViewpager
 小圆点指示器的viewpager,使用非常方便,自动轮播图片,dot circle indicator viewpager auto looping
 ![示意图][1]
 ## 一.特点
@@ -14,14 +14,11 @@
 ### 简单使用
 1.在布局文件中引入:
 
-
- <z.dotloopviewpagerlibrary.DotLoopViewpager
-        android:id="@+id/dlvp"
-        android:layout_width="300dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center"></z.dotloopviewpagerlibrary.DotLoopViewpager>
-
-
+    <z.dotloopviewpagerlibrary.DotLoopViewpager
+    android:id="@+id/dlvp"
+    android:layout_width="300dp"
+    android:layout_height="200dp"
+    android:layout_gravity="center"></z.dotloopviewpagerlibrary.DotLoopViewpager>
 
 2.在activity中的代码:
 
