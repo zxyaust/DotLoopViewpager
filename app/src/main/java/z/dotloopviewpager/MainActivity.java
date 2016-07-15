@@ -33,8 +33,8 @@ public class MainActivity extends AppCompatActivity {
         params.gravity = Gravity.LEFT | Gravity.BOTTOM;
         mDlvpDotLoopViewpager.setIndicatorCotainerLayoutParams(params);
         mDlvpDotLoopViewpager.setSpaceDip(20);
-        mDlvpDotLoopViewpager.setSelectorResource(R.drawable.selector_point1);
-        mDlvpDotLoopViewpager.setIndicatordiameter(150);//如果设置的连个图片资源大小不同,必须设置这个值,否则乱,selector特性决定的
+        mDlvpDotLoopViewpager.setSelectorResource(R.drawable.selector_rectangle);
+        mDlvpDotLoopViewpager._setIndicatordiameter(150);//如果设置的连个图片资源大小不同,必须设置这个值,否则乱,selector特性决定的,不建议使用此属性,如果要调整指示器的大小,请自定义selector来调整
         mDlvpDotLoopViewpager.setonBindImageAndClickListener(new DotLoopViewpager.onBindImageAndClickListener<ADBean>() {
             @Override
             public void onClick(ADBean bean) {

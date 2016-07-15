@@ -87,7 +87,7 @@ public class DotLoopViewpager<T> extends FrameLayout {
         setIndicatorCotainerLayoutParams();
     }
 
-    public void setIndicatordiameter(int indicatordiameter) {
+    public void _setIndicatordiameter(int indicatordiameter) {
         this.indicatordiameter = indicatordiameter;
         indicatordiameter = indicatordiameter >= 0 ? dip2px(getContext(), indicatordiameter) : indicatordiameter;
     }
