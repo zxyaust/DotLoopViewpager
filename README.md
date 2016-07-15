@@ -1,26 +1,28 @@
-# DotLoopViewpager
+﻿# DotLoopViewpager
 小圆点指示器的viewpager,使用非常方便,自动轮播图片,dot circle indicator viewpager auto looping
-![示意图][1]
+![示意图][1]![此处输入图片的描述][2]
 ## 一.特点
 
  - 小圆点指示器,
  - 支持自动轮播,触摸是停止轮播,抬起手再次开始轮播
  - 非常强的自定义属性,可以设置任何图片或者shape文件作为指示器
- [git地址,上面有demo][2]
+ [git地址,上面有demo][3]
 ## 二.初衷
 最近在做轮播图,心想这么简单的东西,应网上第三方的挺多的吧,找一个用用,结果找了好多,没有几个满意的,各种bug,各种麻烦,所以就自己写一个吧,要写就要写好,最首要的就是稳定,其次就是容易上手,最后要扩展性强.已经经过调试,目前没发现什么bug,如果有发现的欢迎提出,使用也是超级方便,简单的几个方法,至于扩展性,个人认为也是很强的.
 ## 三.使用方法
-首先要依赖此项目的library文件,(后期会传到jcenter)
+eclipse首先要依赖此项目的library文件,(后期会传到jcenter)
+ as用户现在可以添加依赖: compile 'com.z:DotLoopViewpager:1.0.0'
+
 ### 简单使用
 1.在布局文件中引入:
 
-   //<z.dotloopviewpagerlibrary.DotLoopViewpager
+    \<z.dotloopviewpagerlibrary.DotLoopViewpager
     android:id="@+id/dlvp"
     android:layout_width="300dp"
     android:layout_height="200dp"
-    android:layout_gravity="center"/>
+    android:layout_gravity="center"\>\</z.dotloopviewpagerlibrary.DotLoopViewpager\>
 
-2.在activity中的代码(一定要看注意部分):
+2.在activity中的代码:
 
      private DotLoopViewpager<ADBean> mDlvpDotLoopViewpager;
      @Override
@@ -69,7 +71,7 @@
 
     //viewpager的图片缩放方式
     private ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER_CROP;
-    //自定义的selector
+    //自定义的selector,selector中需要设置两种状态,一种是enable=ture 一种是enable=false,谨记
     private int selectorResource = R.drawable.selector_point;
     //小圆点之间的距离
     private int spaceDip = 15;
@@ -84,4 +86,5 @@
 
 
   [1]: https://github.com/zxyaust/DotLoopViewpager/blob/master/SCR_20160714_122356.gif?raw=true
-  [2]: https://github.com/zxyaust/DotLoopViewpager
+  [2]: https://github.com/zxyaust/DotLoopViewpager/blob/master/Screenshot_2016-07-15-10-03-58.jpg?raw=true
+  [3]: https://github.com/zxyaust/DotLoopViewpager
