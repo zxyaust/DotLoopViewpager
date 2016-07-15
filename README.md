@@ -11,19 +11,20 @@
 最近在做轮播图,心想这么简单的东西,应网上第三方的挺多的吧,找一个用用,结果找了好多,没有几个满意的,各种bug,各种麻烦,所以就自己写一个吧,要写就要写好,最首要的就是稳定,其次就是容易上手,最后要扩展性强.已经经过调试,目前没发现什么bug,如果有发现的欢迎提出,使用也是超级方便,简单的几个方法,至于扩展性,个人认为也是很强的.
 ## 三.使用方法
 eclipse首先要依赖此项目的library文件,(后期会传到jcenter)
- as用户现在可以添加依赖: compile 'com.z:DotLoopViewpager:1.0.0'
+ as用户现在可以添加依赖:
+```compile 'com.z:DotLoopViewpager:1.0.0' ```
 
 ### 简单使用
 1.在布局文件中引入:
-
-    \<z.dotloopviewpagerlibrary.DotLoopViewpager
+```
+    <z.dotloopviewpagerlibrary.DotLoopViewpager
     android:id="@+id/dlvp"
     android:layout_width="300dp"
     android:layout_height="200dp"
-    android:layout_gravity="center"\>\</z.dotloopviewpagerlibrary.DotLoopViewpager\>
-
+    android:layout_gravity="center"></z.dotloopviewpagerlibrary.DotLoopViewpager\>
+```
 2.在activity中的代码:
-
+```
      private DotLoopViewpager<ADBean> mDlvpDotLoopViewpager;
      @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +50,10 @@ eclipse首先要依赖此项目的library文件,(后期会传到jcenter)
         //设置数据
           mDlvpDotLoopViewpager.setData(tLists);
           }
+```
 ***注意:private DotLoopViewpager<ADBean> mDlvpDotLoopViewpager;这里一定要带泛型,List<ADBean> tLists = new Arraylist()<>;这里要传入的数据集合也要带泛型,DotLoopViewpager.onBindImageAndClickListener<ADBean>()设置监听的时候也要带泛型,这样可以直接绑定图片,设置点击事件也能直接获取到数据,非常方便.***
 ### 自定义各种样式
-
+```
             //设置小圆点指示器容器的各种属性,可以设置gravity,margin,等所有linelayout有的属性
             FrameLayout.LayoutParams params = mDlvpDotLoopViewpager.getIndicatorCotainerLayoutParams();
             params.gravity = Gravity.LEFT | Gravity.BOTTOM;
@@ -64,11 +66,11 @@ eclipse首先要依赖此项目的library文件,(后期会传到jcenter)
             mDlvpDotLoopViewpager.setIndicatordiameter(150);
             //如果设置的selector中的两个图片资源大小不同,必须设置这个值,否则乱,selector特性决定的
             //其他的属性后面会介绍到
-            ...
+```
 ***注意:  mDlvpDotLoopViewpager.setIndicatordiameter(150);
             //如果设置的selector中的两个图片资源大小不同,必须设置这个值,否则乱,selector特性决定的***
 ## 四.所有可定制属性介绍(后面的值是默认值,所有下面属性可以用set方法设置)
-
+```
     //viewpager的图片缩放方式
     private ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER_CROP;
     //自定义的selector,selector中需要设置两种状态,一种是enable=ture 一种是enable=false,谨记
@@ -83,8 +85,38 @@ eclipse首先要依赖此项目的library文件,(后期会传到jcenter)
     private LayoutParams indicatorCotainerLayoutParams;
     //小圆点的直径,默认包裹内容
     private int indicatordiameter = LayoutParams.WRAP_CONTENT;
-
-
+```
+###如果要自定义selector,请看下面
+**自定义长条形的selector代码如下:**
+```
+    <?xml version="1.0" encoding="utf-8"?>
+    <selector xmlns:android="http://schemas.android.com/apk/res/android">
+        <item android:drawable="@drawable/shape_rectangle_red" android:state_enabled="true" />
+        <item android:drawable="@drawable/shape_rectangle_gray" android:state_enabled="false" />
+    </selector>
+```
+**shape_rectangle_gray代码如下:**
+```
+    <?xml version="1.0" encoding="utf-8"?>
+    <shape xmlns:android="http://schemas.android.com/apk/res/android"
+           android:shape="rectangle">
+        <solid android:color="#888"/>
+        <size
+            android:width="17dp"
+            android:height="7dp"/>
+    </shape>
+```
+**shape_rectangle_red代码如下:**
+```
+    <?xml version="1.0" encoding="utf-8"?>
+    <shape xmlns:android="http://schemas.android.com/apk/res/android"
+           android:shape="rectangle">
+        <solid android:color="#f00"/>
+        <size
+            android:width="17dp"
+            android:height="7dp"/>
+    </shape>
+```
   [1]: https://github.com/zxyaust/DotLoopViewpager/blob/master/SCR_20160714_122356.gif?raw=true
   [2]: https://github.com/zxyaust/DotLoopViewpager/blob/master/Screenshot_2016-07-15-10-03-58.jpg?raw=true
   [3]: https://github.com/zxyaust/DotLoopViewpager
