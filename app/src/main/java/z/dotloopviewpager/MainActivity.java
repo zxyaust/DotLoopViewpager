@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 Glide.with(getApplicationContext()).load(bean.getImg_url()).centerCrop().into(imageView);
             }
         });
+        mDlvpDotLoopViewpager1.setLoopType(DotLoopViewpager.LOOPTYPE_RESTART);
         getWebImageViews();
     }
 
