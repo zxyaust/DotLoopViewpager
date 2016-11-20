@@ -20,8 +20,8 @@ import z.dotloopviewpagerlibrary.DotLoopViewpager;
 
 public class MainActivity extends AppCompatActivity {
 
-    private DotLoopViewpager<ADBean> mDlvpDotLoopViewpager;
-    private DotLoopViewpager<ADBean> mDlvpDotLoopViewpager1;
+    private DotLoopViewpager mDlvpDotLoopViewpager;
+    private DotLoopViewpager mDlvpDotLoopViewpager1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +29,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mDlvpDotLoopViewpager = (DotLoopViewpager) findViewById(R.id.dlvp);
         mDlvpDotLoopViewpager1 = (DotLoopViewpager) findViewById(R.id.dlvp1);
-        FrameLayout.LayoutParams params = mDlvpDotLoopViewpager.getIndicatorCotainerLayoutParams();
-        params.gravity = Gravity.LEFT | Gravity.BOTTOM;
-        mDlvpDotLoopViewpager.setIndicatorCotainerLayoutParams(params);
-        mDlvpDotLoopViewpager.setSpaceDip(20);
-        mDlvpDotLoopViewpager.setSelectorResource(R.drawable.selector_rectangle);
-        mDlvpDotLoopViewpager._setIndicatordiameter(150);//如果设置的连个图片资源大小不同,必须设置这个值,否则乱,selector特性决定的,不建议使用此属性,如果要调整指示器的大小,请自定义selector来调整
+
         mDlvpDotLoopViewpager.setonBindImageAndClickListener(new DotLoopViewpager.onBindImageAndClickListener<ADBean>() {
             @Override
             public void onClick(ADBean bean) {
@@ -57,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
                 Glide.with(getApplicationContext()).load(bean.getImg_url()).centerCrop().into(imageView);
             }
         });
-        mDlvpDotLoopViewpager1.setLoopType(DotLoopViewpager.LOOPTYPE_RESTART);
         getWebImageViews();
     }
 
