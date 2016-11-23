@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="DotLoopViewpager">
+        <attr name="auto_loop" format="boolean"></attr>
+        <attr name="loop_time" format="integer"></attr>
+        <attr name="infinite_loop" format="boolean"></attr>
+        <attr name="indicator_drawable_selected" format="reference"></attr>
+        <attr name="indicator_height" format="dimension"></attr>
+        <attr name="indicator_width" format="dimension"></attr>
+        <attr name="indicator_drawable_unselected" format="reference"></attr>
+        <attr name="indicator_space" format="dimension"></attr>
+        <attr name="indicator_gravity" format="integer"></attr>
+        <attr name="indicator_marginBottom" format="dimension"></attr>
+        <attr name="indicator_marginLeft" format="dimension"></attr>
+        <attr name="indicator_marginRight" format="dimension"></attr>
+        <attr name="title_gravity" format="integer"></attr>
+        <attr name="title_color" format="color"></attr>
+        <attr name="title_size" format="dimension"></attr>
+        <attr name="title_bg" format="color"></attr>
+        <attr name="indicator_bg" format="color"></attr>
+        <attr name="title_marginBottom" format="dimension"></attr>
+        <attr name="title_marginLeft" format="dimension"></attr>
+        <attr name="title_marginRight" format="dimension"></attr>
+    </declare-styleable>
+</resources>

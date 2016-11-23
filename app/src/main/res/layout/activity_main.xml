@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
 
     <z.dotloopviewpagerlibrary.DotLoopViewpager
         android:id="@+id/dlvp"
         android:layout_width="300dp"
         android:layout_height="200dp"
-        android:layout_gravity="center"></z.dotloopviewpagerlibrary.DotLoopViewpager>
+        android:layout_gravity="center"
+        app:indicator_space="10dp"
+        app:title_bg="#8ccc"
+        app:title_color="#f00"
+        app:title_size="12sp"></z.dotloopviewpagerlibrary.DotLoopViewpager>
 
-    <z.dotloopviewpagerlibrary.DotLoopViewpager
-        android:id="@+id/dlvp1"
-        android:layout_width="300dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center"></z.dotloopviewpagerlibrary.DotLoopViewpager>
 </LinearLayout>
