@@ -18,8 +18,6 @@
         android:layout_height="200dp"
         android:layout_gravity="center"
         app:indicator_space="10dp"
-        app:title_bg="#8ccc"
-        app:title_color="#f00"
-        app:title_size="12sp"></z.dotloopviewpagerlibrary.DotLoopViewpager>
+       ></z.dotloopviewpagerlibrary.DotLoopViewpager>
 
 </LinearLayout>

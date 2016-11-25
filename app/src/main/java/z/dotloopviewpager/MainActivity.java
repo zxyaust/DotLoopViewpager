@@ -6,18 +6,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.zhy.http.okhttp.OkHttpUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import z.dotloopviewpager.other.ADBean;
-import z.dotloopviewpager.other.LogUtil;
-import z.dotloopviewpager.other.MyListBeansCallBack;
 import z.dotloopviewpager.other.ToastUtils;
-import z.dotloopviewpager.other.URLConstant;
 import z.dotloopviewpagerlibrary.DotLoopViewpager;
-import z.dotloopviewpagerlibrary.OnEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mDlvpDotLoopViewpager = (DotLoopViewpager) findViewById(R.id.dlvp);
-        mDlvpDotLoopViewpager.setonBindImageAndClickListener(new DotLoopViewpager.onBindImageAndClickListener<ADBean>() {
+        mDlvpDotLoopViewpager.setEventListener(new DotLoopViewpager.onBindImageAndClickListener<ADBean>() {
             @Override
             public void onClick(ADBean bean) {
                 ToastUtils.show(getApplicationContext(), bean.getDetail_url());

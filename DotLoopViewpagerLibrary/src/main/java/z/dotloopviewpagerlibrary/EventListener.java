@@ -8,7 +8,7 @@ import android.widget.TextView;
  *
  * @param <T>
  */
-public interface OnEventListener<T> {
+public interface EventListener<T> {
     void onClick(T bean);
 
     void onBind(T bean, ImageView imageView);

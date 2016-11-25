@@ -2,15 +2,12 @@ package z.dotloopviewpagerlibrary;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,15 +24,13 @@ import java.util.List;
  * Created by max on 2016/7/13.
  */
 public class DotLoopViewpager extends FrameLayout {
-    public final static int LOOPTYPE_RESTART = 0;
-    public final static int LOOPTYPE_NORMAL = 1;
+
     private final Context context;
 
 
-    private onBindImageAndClickListener listener;
-    private int loopType = LOOPTYPE_NORMAL;
+    private EventListener listener;
     private ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER_CROP;
-    private boolean autoLoop = true;
+    private boolean isAutoLoop = true;
     private long loopTime;
 
     private LinearLayout indicatorContainer;
@@ -48,25 +43,14 @@ public class DotLoopViewpager extends FrameLayout {
 
     private int indicatorDrawable;
     private int indicatorUnselected;
-    private boolean isAutoLoop;
     private boolean isInfiniteLoop;
     private int indicator_hight;
     private int indicator_width;
-    private float title_marginRight;
-    private float title_marginLeft;
-    private float title_marginBottom;
-    private float indicator_marginRight;
-    private float indicator_marginLeft;
-    private float indicator_marginBottom;
-    private int title_gravity;
-    private int indicator_gravity;
-    private float title_size;
-    private int title_color;
-    private int title_bg;
-    private int indicator_bg;
     private float indiactor_space;
     private Handler mHandler;
     private ImageView indicator;
+    private LayoutParams titleParams;
+    private RelativeLayout.LayoutParams indicatorBarParams;
 
     //-----------------------------------构造方法
     public DotLoopViewpager(Context context) {
@@ -89,31 +73,17 @@ public class DotLoopViewpager extends FrameLayout {
         isInfiniteLoop = typedArray.getBoolean(R.styleable.DotLoopViewpager_infinite_loop, true);
         indicator_hight = (int) typedArray.getDimension(R.styleable.DotLoopViewpager_indicator_height, 20);
         indicator_width = (int) typedArray.getDimension(R.styleable.DotLoopViewpager_indicator_width, 20);
-        title_marginRight = typedArray.getDimension(R.styleable.DotLoopViewpager_title_marginRight, 0);
-        title_marginLeft = typedArray.getDimension(R.styleable.DotLoopViewpager_title_marginLeft, 0);
-        title_marginBottom = typedArray.getDimension(R.styleable.DotLoopViewpager_title_marginBottom, 30);
-        indicator_marginRight = typedArray.getDimension(R.styleable.DotLoopViewpager_indicator_marginRight, 10);
-        indicator_marginLeft = typedArray.getDimension(R.styleable.DotLoopViewpager_indicator_marginLeft, 0);
-        indicator_marginBottom = typedArray.getDimension(R.styleable.DotLoopViewpager_indicator_marginBottom, 10);
-        title_gravity = typedArray.getInt(R.styleable.DotLoopViewpager_title_gravity, Gravity.CENTER);
-        title_size = typedArray.getDimension(R.styleable.DotLoopViewpager_title_size, 15f);
-        Log.d("聊天:字体大小", title_size + "");
-        title_color = typedArray.getColor(R.styleable.DotLoopViewpager_title_color, Color.argb(200, 255, 255, 255));
-        title_bg = typedArray.getColor(R.styleable.DotLoopViewpager_title_bg, Color.argb(80, 0, 0, 0));
-        indicator_bg = typedArray.getColor(R.styleable.DotLoopViewpager_indicator_bg, Color.argb(80, 0, 0, 0));
-        title_gravity = typedArray.getInt(R.styleable.DotLoopViewpager_title_gravity, Gravity.CENTER);
-        indicator_gravity = typedArray.getInt(R.styleable.DotLoopViewpager_indicator_gravity, Gravity.RIGHT);
         loopTime = typedArray.getInt(R.styleable.DotLoopViewpager_loop_time, 3000);
         mHandler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
-                if (!autoLoop)
+                if (!isAutoLoop)
                     return;
                 int currentItem = viewPager.getCurrentItem();//当前页面位置
                 //跳到下一页
                 currentItem++;
                 if (imageViews.size() > 0) {
-                    if (loopType == LOOPTYPE_RESTART)
+                    if (isInfiniteLoop)
                         currentItem = currentItem % imageViews.size();
                     viewPager.setCurrentItem(currentItem);
                     //继续发送延时3秒的消息,形成内循环, 类似递归
@@ -132,26 +102,16 @@ public class DotLoopViewpager extends FrameLayout {
         viewPager = (ViewPager) view.findViewById(R.id.vp);
         indicatorContainer = (LinearLayout) view.findViewById(R.id.ll_indicator);
         rlContainer = (RelativeLayout) view.findViewById(R.id.rl_container);
+        indicatorBarParams = (RelativeLayout.LayoutParams) rlContainer.getLayoutParams();
         indicator = (ImageView) view.findViewById(R.id.indicator);
         indicator.setImageResource(indicatorDrawable);
         indicator.getLayoutParams().width = indicator_width;
         indicator.getLayoutParams().height = indicator_hight;
         //titleview初始化
         titleView = (TextView) view.findViewById(R.id.title);
-        titleView.setTextSize(TypedValue.COMPLEX_UNIT_PX, title_size);
-        titleView.setTextColor(title_color);
-        titleView.setBackgroundColor(title_bg);
-        titleView.setGravity(title_gravity);
-        LayoutParams params = (LayoutParams) titleView.getLayoutParams();
-        params.setMargins(dip2px(title_marginLeft), 0,
-                dip2px(title_marginRight), dip2px(title_marginBottom));
-        //indicatorContainer初始化
-        indicatorContainer.setBackgroundColor(indicator_bg);
+        titleParams = (LayoutParams) titleView.getLayoutParams();
         RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) indicatorContainer.getLayoutParams();
         FrameLayout.LayoutParams layoutParams1 = (LayoutParams) rlContainer.getLayoutParams();
-        layoutParams1.gravity = indicator_gravity;
-        layoutParams.setMargins(dip2px(indicator_marginLeft), 0,
-                dip2px(indicator_marginRight), dip2px(indicator_marginBottom));
         indicatorContainer.setLayoutParams(layoutParams);
         addView(view);
 
@@ -293,9 +253,7 @@ public class DotLoopViewpager extends FrameLayout {
 
         @Override
         public int getCount() {
-            if (loopType == LOOPTYPE_RESTART)
-                return views.size();
-            return Integer.MAX_VALUE;
+            return isInfiniteLoop ? Integer.MAX_VALUE : views.size();
         }
 
         @Override
@@ -305,41 +263,19 @@ public class DotLoopViewpager extends FrameLayout {
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            if (loopType == LOOPTYPE_RESTART) {
-                container.addView(views.get(position));
-                return views.get(position);
+            ImageView child = views.get(isInfiniteLoop ? position % views.size() : position);
+            if (child.getParent() == null) {
+                ViewGroup parent = viewPager;
+                parent.removeView(child);
             }
-            container.addView(views.get(position % views.size()));
-            return views.get(position % views.size());
+            container.addView(child);
+            return views.get(isInfiniteLoop ? position % views.size() : position);
         }
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
-            if (loopType == LOOPTYPE_RESTART)
-                container.removeView(views.get(position));
-            container.removeView(views.get(position % views.size()));
+            container.removeView(views.get(isInfiniteLoop ? position % views.size() : position));
         }
-    }
-
-
-    public int dip2px(float dp) {
-        float density = context.getResources().getDisplayMetrics().density;
-        //dp = px/density
-        int px = (int) (dp * density + 0.5f);
-        return px;
-    }
-
-    /**
-     * 监听器
-     *
-     * @param <T>
-     */
-    public interface onBindImageAndClickListener<T> {
-        public void onClick(T bean);
-
-        public void onBind(T bean, ImageView imageView);
-
-        public void onBindTitle(T bean, TextView title);
     }
 
     /**
@@ -347,7 +283,7 @@ public class DotLoopViewpager extends FrameLayout {
      *
      * @param o 绑定监听事件
      */
-    public void setonBindImageAndClickListener(onBindImageAndClickListener o) {
+    public void setEventListener(EventListener o) {
         listener = o;
     }
 }
