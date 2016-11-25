@@ -9,6 +9,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -286,11 +287,26 @@ public class DotLoopViewpager<T> extends FrameLayout {
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             if (loopType == LOOPTYPE_RESTART) {
+                ImageView view = views.get(position);
+                //如果View已经在之前添加到了一个父组件，则必须先remove，否则会抛出IllegalStateException。
+                ViewParent vp = view.getParent();
+                if (vp != null) {
+                    ViewGroup parent = (ViewGroup) vp;
+                    parent.removeView(view);
+                }
                 container.addView(views.get(position));
                 return views.get(position);
+            } else {
+                ImageView view = views.get(position % views.size());
+                //如果View已经在之前添加到了一个父组件，则必须先remove，否则会抛出IllegalStateException。
+                ViewParent vp = view.getParent();
+                if (vp != null) {
+                    ViewGroup parent = (ViewGroup) vp;
+                    parent.removeView(view);
+                }
+                container.addView(views.get(position % views.size()));
+                return views.get(position % views.size());
             }
-            container.addView(views.get(position % views.size()));
-            return views.get(position % views.size());
         }
 
         @Override
