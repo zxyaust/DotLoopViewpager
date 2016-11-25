@@ -5,6 +5,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <z.dotloopviewpagerlibrary.LoopPage
+        android:layout_marginTop="50dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center">
+    </z.dotloopviewpagerlibrary.LoopPage>
 
     <z.dotloopviewpagerlibrary.DotLoopViewpager
         android:id="@+id/dlvp"

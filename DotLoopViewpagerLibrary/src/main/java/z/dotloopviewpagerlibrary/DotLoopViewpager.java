@@ -135,6 +135,7 @@ public class DotLoopViewpager extends FrameLayout {
         indicator = (ImageView) view.findViewById(R.id.indicator);
         indicator.setImageResource(indicatorDrawable);
         indicator.getLayoutParams().width = indicator_width;
+        indicator.getLayoutParams().height = indicator_hight;
         //titleview初始化
         titleView = (TextView) view.findViewById(R.id.title);
         titleView.setTextSize(TypedValue.COMPLEX_UNIT_PX, title_size);

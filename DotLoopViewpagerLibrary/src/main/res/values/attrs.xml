@@ -9,7 +9,8 @@
         <attr name="indicator_width" format="dimension"></attr>
         <attr name="indicator_drawable_unselected" format="reference"></attr>
         <attr name="indicator_space" format="dimension"></attr>
-        <attr name="indicator_gravity" format="integer"></attr>
+        <attr name="indicator_gravity" format="flag">
+        </attr>
         <attr name="indicator_marginBottom" format="dimension"></attr>
         <attr name="indicator_marginLeft" format="dimension"></attr>
         <attr name="indicator_marginRight" format="dimension"></attr>
@@ -21,5 +22,8 @@
         <attr name="title_marginBottom" format="dimension"></attr>
         <attr name="title_marginLeft" format="dimension"></attr>
         <attr name="title_marginRight" format="dimension"></attr>
+    </declare-styleable>
+    <declare-styleable name="LoopPage">
+        <attr name="indicator_drawable" format="reference"></attr>
     </declare-styleable>
 </resources>
